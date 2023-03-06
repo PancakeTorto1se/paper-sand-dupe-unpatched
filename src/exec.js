@@ -1,4 +1,4 @@
-const exec = require("shelljs.exec");
+const shell = require("shelljs");
 
 function executeCmd(aCmd, aOpt, aMsg) {
   if (arguments.length === 2 && typeof arguments[1] === "string")
@@ -7,7 +7,7 @@ function executeCmd(aCmd, aOpt, aMsg) {
   let opt = { silent: true };
   if (typeof aOpt === "object") Object.assign(opt, aOpt);
   console.log(`> ${aCmd}`);
-  let cmdObj = exec(aCmd, opt);
+  let cmdObj = shell.exec(aCmd, opt);
   if (cmdObj.error) {
     console.error(cmdObj.stderr);
     process.exit(cmdObj.code);
@@ -18,7 +18,7 @@ function executeCmd(aCmd, aOpt, aMsg) {
 function executeCmdS(aCmd, aOpt) {
   let opt = { silent: true };
   if (typeof aOpt === "object") Object.assign(opt, aOpt);
-  let cmdObj = exec(aCmd, opt);
+  let cmdObj = shell.exec(aCmd, opt);
   if (cmdObj.error) {
     console.error(cmdObj.stdout);
   }
