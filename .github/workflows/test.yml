@@ -56,6 +56,6 @@ jobs:
         filename: output.json
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         path: ${{ env.json_FileName }}
