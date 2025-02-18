@@ -32,19 +32,19 @@ function get_statusCode(aUrl)
 
 async function get_version()
 {
-    let json = await get_json("https://papermc.io/api/v2/projects/paper/")
+    let json = await get_json("https://api.papermc.io/v2/projects/paper/")
     return json.versions[json.versions.length - 1]
 }
 
 async function get_version_prev()
 {
-    let json = await get_json("https://papermc.io/api/v2/projects/paper/")
+    let json = await get_json("https://api.papermc.io/v2/projects/paper/")
     return json.versions[json.versions.length - 2]
 }
 
 async function get_latest_build_number(aVersion)
 {
-    let json = await get_json(`https://papermc.io/api/v2/projects/paper/versions/${aVersion}/`)
+    let json = await get_json(`https://api.papermc.io/v2/projects/paper/versions/${aVersion}/`)
     // in case builds are empty return -1
     if (json.builds.length === 0)
         return -1
@@ -54,7 +54,7 @@ async function get_latest_build_number(aVersion)
 
 async function get_build(aVersion, aBuild_Num)
 {
-    let json = await get_json(`https://papermc.io/api/v2/projects/paper/versions/${aVersion}/builds/${aBuild_Num}/`)
+    let json = await get_json(`https://api.papermc.io/v2/projects/paper/versions/${aVersion}/builds/${aBuild_Num}/`)
     return json
 }
 
@@ -66,7 +66,7 @@ async function get_commit(aBuild)
     {
         let pre_build = aBuild.build - 1
         let version = aBuild.version
-        let json = await get_json(`https://papermc.io/api/v2/projects/paper/versions/${version}/builds/${pre_build}/`)
+        let json = await get_json(`https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${pre_build}/`)
         return get_commit(json)
     }
 }
